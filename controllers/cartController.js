@@ -165,6 +165,17 @@ const deleteFromCart = async (req, res) => {
     res.status(500).json({ msg: err });
   }
 };
+const getProducts = async (req, res) => {
+  try {
+    const products = await Product.find({});
+    if (products) {
+      res.status(200).json({ products });
+    }
+    res.json({ msg: "empty" });
+  } catch (err) {
+    res.status(500).json({ err });
+  }
+};
 
 module.exports = {
   getCart,
@@ -172,4 +183,5 @@ module.exports = {
   incrementQuantity,
   decrementQuantity,
   deleteFromCart,
+  getProducts,
 };
